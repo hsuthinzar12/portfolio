@@ -10,16 +10,18 @@ export default function Header() {
 
     return (
         <header className="flex items-center justify-between p-4 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
-            <h1>
-                <a href="/" className="text-2xl font-bold text-gray-900 dark:text-white">Hsu</a>
-            </h1>
+            <div>
+                <a href="/" className="text-2xl font-bold text-gray-900 dark:text-white">Hsu ツ</a>
+            </div>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
-                <ul className="flex items-center space-x-6 text-gray-700 dark:text-gray-200">
-                    <li><a href="#about" className="hover:underline">About</a></li>
-                    <li><a href="#skills" className="hover:underline">Skills</a></li>
-                    <li><a href="#contact" className="hover:underline">Contact</a></li>
+                <ul>
+                    <li><a href="#about" className="hover:underline">about</a></li>
+                    <li><a href="#skills" className="hover:underline">skills</a></li>
+                    <li><a href="#projects" className="hover:underline">projects</a></li>
+                    <li><a href="#designs" className="hover:underline">designs</a></li>
+                    <li><a href="#contact" className="hover:underline">contact</a></li>
                 </ul>
             </nav>
 
@@ -42,10 +44,12 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {menuOpen && (
-                <div className="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 h-screen w-full md:hidden">
-                    <ul className="flex flex-col items-center space-y-4 py-4 text-gray-700 dark:text-gray-200">
+                <div className="absolute top-16 left-0 w-full bg-white dark:bg-black h-screen w-full md:hidden">
+                    <ul className="flex flex-col items-center space-y-4 py-4 text-gray-700 dark:text-gray-200 h-screen pt-40">
                         <li><a href="#about" className="hover:underline" onClick={toggleMenu}>About</a></li>
                         <li><a href="#skills" className="hover:underline" onClick={toggleMenu}>Skills</a></li>
+                        <li><a href="#projects" className="hover:underline" onClick={toggleMenu}>Projects</a></li>
+                        <li><a href="#designs" className="hover:underline" onClick={toggleMenu}>Designs</a></li>
                         <li><a href="#contact" className="hover:underline" onClick={toggleMenu}>Contact</a></li>
                     </ul>
                 </div>

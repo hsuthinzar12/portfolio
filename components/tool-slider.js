@@ -29,7 +29,9 @@ export default function ToolSlider() {
               alt={tool.name}
               className="w-12 h-12 object-contain"
             />
-            <span className="mt-2 text-sm text-white text-center">{tool.name}</span>
+            <span className="mt-2 font-bold text-sm text-white text-center">
+              {tool.name}
+            </span>
           </div>
         ))}
       </div>
