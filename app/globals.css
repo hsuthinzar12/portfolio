@@ -206,21 +206,43 @@ header nav ul {
   align-items: center;
 }
 
-header nav ul li {
-  margin-left: 20px;
+header nav ul li + li {
+  margin-left: 48px;
 }
 
 header nav ul li a {
   display: inline-block;
   transition: 0.4s;
+  font-size: 18px;
+  padding-bottom: 8px;
+  position: relative;
 }
 
 header nav ul li a:hover {
   color: #cf0a0a;
 }
 
-header nav ul li:last-child {
-  margin-right: 0;
+header nav ul li a::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.2rem;
+  background: linear-gradient(#ce002e, #b9062e);
+  content: "";
+  transform: translate3d(-100%, 0, 0);
+  transition:
+    opacity 300ms,
+    transform 300ms;
+  opacity: 0;
+}
+header nav ul li a:hover::after {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+header nav ul li:first-child {
+  margin-left: 0;
 }
 
 .wrapper {
@@ -602,9 +624,33 @@ html.dark .popup-box {
   align-items: center;
 }
 
+.designs-blk.uiux {
+  flex-direction: row-reverse;
+}
+
+.designs-blk.uiux .design-list li img {
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.designs-blk.uiux .design-list {
+  border-radius: 10px;
+}
+
+.designs-blk.uiux .design-list li:first-child img,
+.designs-blk.uiux .design-list li:last-child img {
+  border-radius: 0;
+}
+
 .design-txt {
   width: 50%;
   margin-right: 80px;
+}
+
+.designs-blk.uiux .design-txt {
+  margin-right: 0;
+  margin-left: 80px;
 }
 
 .design-txt h2 {
@@ -664,7 +710,7 @@ html.dark .sec-contact {
 }
 
 html.dark .contact-blk .info-list li {
-  background-color: rgba(238, 238, 238, 0.25);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .contact-blk .info-list li a {
@@ -675,6 +721,12 @@ html.dark .contact-blk .info-list li {
 
 .contact-blk .info-list li:hover {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  scale: 1.1;
+}
+
+html.dark .contact-blk .info-list li:hover {
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.25);
+  scale: 1.1;
 }
 
 .contact-blk .info-list li svg {
@@ -682,7 +734,7 @@ html.dark .contact-blk .info-list li {
   margin: 0 auto 8px;
 }
 html.dark .contact-blk .info-list li svg {
-  color: rgba(207, 10, 9, 0.4);
+  color: rgba(255, 255, 255, 0.8);
 }
 .contact-form h3 {
   text-align: center;
@@ -824,6 +876,12 @@ html.dark .contact-form textarea {
     width: 100%;
     margin-right: 0;
     margin-bottom: 40px;
+  }
+  .designs-blk.uiux .design-txt {
+    margin-left: 0;
+  }
+  section.uiux-designs {
+    padding-bottom: 0;
   }
   .design-list,
   .prj-list li:last-child,

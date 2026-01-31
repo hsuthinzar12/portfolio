@@ -64,8 +64,12 @@ export default function Home() {
               and communication skills.
             </p>
             <p>
-              I am also attending a UI/UX Design course at Fairway Technology to
-              further enhance my design thinking and product-building abilities.
+              Recently certified in a Professional UI/UX Design Course at
+              Fairway Technology, I have built a diverse portfolio ranging from
+              Burma Beat (a collaborative music app focused on user research) to
+              NearBrew (a solo project featuring deli and pickup logic).
+              Additionally, I redesigned the EMS UI to ensure a professional,
+              user-ready interface for a live system.
             </p>
           </div>
           <div className="edu-blk">
@@ -101,7 +105,9 @@ export default function Home() {
                     </span>
                   </li>
                   <li>
-                    <span>2025 ~ present</span>
+                    <span>
+                      2025<small>(Oct ~ Dec)</small>
+                    </span>
                     <span>
                       Fairway Technology
                       <small>Professional UI/UX Design</small>
@@ -187,6 +193,56 @@ export default function Home() {
                 <Image
                   src="/img/design04.webp"
                   alt="KFC"
+                  width={300}
+                  height={300}
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="designs" className="sec-designs uiux-designs scroll-mt-30">
+        <div className="inner">
+          <div className="designs-blk uiux">
+            <div className="design-txt">
+              <h2>UI/UX Designs I Created</h2>
+              <p>
+                These UI/UX designs were created using Figma, focusing on user
+                flow, layout structure, component consistency, and real-world
+                usability. Each project reflects my understanding of UI/UX
+                principles and product-oriented design thinking.
+              </p>
+            </div>
+            <ul className="design-list">
+              <li>
+                <Image
+                  src="/img/uiux01.webp"
+                  alt="UI/UX Designs I Created"
+                  width={300}
+                  height={300}
+                />
+              </li>
+              <li>
+                <Image
+                  src="/img/uiux02.webp"
+                  alt="UI/UX Designs I Created"
+                  width={300}
+                  height={300}
+                />
+              </li>
+              <li>
+                <Image
+                  src="/img/uiux03.webp"
+                  alt="UI/UX Designs I Created"
+                  width={300}
+                  height={300}
+                />
+              </li>
+              <li>
+                <Image
+                  src="/img/uiux04.webp"
+                  alt="UI/UX Designs I Created"
                   width={300}
                   height={300}
                 />
