@@ -23,8 +23,7 @@ export default function Home() {
             <div className="mv-txt">
               <h1>
                 <span>
-                  {" "}
-                  Hello,{" "}
+                  Hello,
                   <Image
                     src="/img/hand-waving.gif"
                     className="hand-wave"
@@ -36,8 +35,7 @@ export default function Home() {
                 I'm Hsu Thinzar
               </h1>
               <p>
-                Junior Frontend Developer & UIUX Designer passionate about
-                building responsive design & creating eye catching designs
+                Web Developer & UIUX Designer passionate about building responsive design & creating eye catching designs
               </p>
             </div>
             <div className="mv-img">
@@ -52,10 +50,7 @@ export default function Home() {
         <div className="inner">
           <div className="abt-blk">
             <p>
-              I am a Junior Frontend Developer currently working at MetaTeam
-              Myanmar Company since June 2024. I contribute to WordPress CMS
-              design, where I build and customize layouts using HTML, CSS,
-              jQuery, and WordPress.
+              I am Junior Web Developer at MetaTeam Myanmar (since June 2024), specializing in WordPress and Shopify development. I build and customize high-performance layouts using HTML, CSS, and jQuery.
             </p>
             <p>
               In addition to development, I work with Photoshop to assist with
@@ -113,6 +108,15 @@ export default function Home() {
                       <small>Professional UI/UX Design</small>
                     </span>
                   </li>
+                  <li>
+                    <span>
+                      2026<small>(May ~ Present)</small>
+                    </span>
+                    <span>
+                      Futura School
+                      <small>User Experience Design</small>
+                    </span>
+                  </li>
                 </ul>
               </div>
               <div className="edu-itm">
@@ -147,6 +151,44 @@ export default function Home() {
       <section className="sec-projects scroll-mt-30" id="projects">
         <h2 className="cmn-ttl">Projects</h2>
         <Projects />
+      </section>
+
+      <section id="designs" className="sec-designs uiux-designs scroll-mt-30">
+        <div className="inner">
+          <div className="designs-blk uiux">
+            <div className="design-txt">
+              <h2>UI/UX Designs I Created</h2>
+              <p>
+                These UI/UX designs were created using Figma, focusing on user
+                flow, layout structure, component consistency, and real-world
+                usability. Each project reflects my understanding of UI/UX
+                principles and product-oriented design thinking.
+              </p>
+            </div>
+            <ul className="uiuxdesign-list">
+              <li>
+                <h3>Portfolio</h3>
+                <p>Designed a personal portfolio focusing on a clean visual identity and a responsive layout.</p>
+                <a href="https://www.figma.com/design/KuLsj5tvQmz6kR79wHPHbW/Portfolio?node-id=0-1&t=k6yyYIBZuwsHfbEW-1" target="_blank">View Detail</a>
+              </li>
+              <li>
+                <h3>BurmaBeat<span>(Group Project)</span></h3>
+                <p>I designed a 9-screen layout for Beatjam, find song, and music play features, based on research-driven user personas (Sayar Myo Maung).</p>
+                <a href="https://www.figma.com/design/JtdBg0wl3ELJQ7SVSy7ay2/BurmaBeat" target="_blank">View Detail</a>
+              </li>
+              <li>
+                <h3>NearBrew</h3>
+                <p>Designed location-based search and checkout flows to simplify the cafe ordering experience for users.</p>
+                <a href="https://www.figma.com/design/OsvFuUIA79n3efNDLdfDe0/NearBrew?node-id=1-2&p=f" target="_blank">View Detail</a>
+              </li>
+              <li>
+                <h3>EMS(redesign)</h3>
+                <p>Transformed a developed EMS into a user-friendly platform by redesigning core layouts based on requirements.</p>
+                <a href="https://www.figma.com/design/AfWeMxljNPWH8oAs2p3uJW/EMS?node-id=1-2&p=f" target="_blank">View Detail</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </section>
 
       <section id="designs" className="sec-designs scroll-mt-30">
@@ -193,56 +235,6 @@ export default function Home() {
                 <Image
                   src="/img/design04.webp"
                   alt="KFC"
-                  width={300}
-                  height={300}
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section id="designs" className="sec-designs uiux-designs scroll-mt-30">
-        <div className="inner">
-          <div className="designs-blk uiux">
-            <div className="design-txt">
-              <h2>UI/UX Designs I Created</h2>
-              <p>
-                These UI/UX designs were created using Figma, focusing on user
-                flow, layout structure, component consistency, and real-world
-                usability. Each project reflects my understanding of UI/UX
-                principles and product-oriented design thinking.
-              </p>
-            </div>
-            <ul className="design-list">
-              <li>
-                <Image
-                  src="/img/uiux01.webp"
-                  alt="UI/UX Designs I Created"
-                  width={300}
-                  height={300}
-                />
-              </li>
-              <li>
-                <Image
-                  src="/img/uiux02.webp"
-                  alt="UI/UX Designs I Created"
-                  width={300}
-                  height={300}
-                />
-              </li>
-              <li>
-                <Image
-                  src="/img/uiux03.webp"
-                  alt="UI/UX Designs I Created"
-                  width={300}
-                  height={300}
-                />
-              </li>
-              <li>
-                <Image
-                  src="/img/uiux04.webp"
-                  alt="UI/UX Designs I Created"
                   width={300}
                   height={300}
                 />

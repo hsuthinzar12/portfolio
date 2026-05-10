@@ -80,6 +80,15 @@ export default function Contact() {
                 <span>Linkedin</span>
               </a>
             </li>
+
+            <li>
+              <a
+                href="/HsuThinzar_CV.pdf"
+                target="_blank"
+              >
+                <span>Click here to download CV</span>
+              </a>
+            </li>
           </ul>
         </div>
 

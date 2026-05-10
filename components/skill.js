@@ -20,12 +20,6 @@ export default function SkillCard() {
   return (
     <div className="skill-list">
       <div className="skill-blk">
-        <Image
-          src="/img/coding.png"
-          alt="Design Coding"
-          width={60}
-          height={60}
-        />
         <h3>Design Coding</h3>
         <p>Responsive design coding using HTML, CSS, and jQuery.</p>
         <div className="progress-blk">
@@ -36,9 +30,8 @@ export default function SkillCard() {
         </div>
       </div>
       <div className="skill-blk">
-        <Image src="/img/cms.png" alt="CMS" width={60} height={60} />
-        <h3>CMS</h3>
-        <p>Building and customizing websites using WordPress.</p>
+        <h3>CMS & Ecommerce</h3>
+        <p>Building and customizing websites using WordPress and Shopify.</p>
         <div className="progress-blk">
           <span>{cms}%</span>
           <div className="progress-bar">
@@ -47,11 +40,10 @@ export default function SkillCard() {
         </div>
       </div>
       <div className="skill-blk">
-        <Image src="/img/uxui.png" alt="UIUX" width={60} height={60} />
         <h3>
-          UI/UX <small>(Learning Stage)</small>
+          UI/UX
         </h3>
-        <p>Creating basic wireframes and layout in Figma.</p>
+        <p>Designed wireframes and interactive layouts, focusing on component consistency and user flow optimization in Figma.</p>
         <div className="progress-blk">
           <span>{uiux}%</span>
           <div className="progress-bar">
@@ -60,7 +52,6 @@ export default function SkillCard() {
         </div>
       </div>
       <div className="skill-blk">
-        <Image src="/img/psd.png" alt="PhotoShop" width={60} height={60} />
         <h3>PhotoShop</h3>
         <p>Basic image editing with Photoshop</p>
         <div className="progress-blk">
