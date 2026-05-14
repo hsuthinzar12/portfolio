@@ -12,7 +12,7 @@ export default function SkillCard() {
 
   useEffect(() => {
     setTimeout(() => setCoding(80), 300);
-    setTimeout(() => setCms(60), 300);
+    setTimeout(() => setCms(80), 300);
     setTimeout(() => setUiux(70), 300);
     setTimeout(() => setPsd(40), 300);
   }, []);

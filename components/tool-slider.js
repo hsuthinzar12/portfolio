@@ -4,17 +4,18 @@ const tools = [
   { name: "HTML", icon: "/img/html.svg" },
   { name: "CSS", icon: "/img/css.svg" },
   { name: "JavaScript", icon: "/img/js.svg" },
+  { name: "WordPress", icon: "/img/wordpress.svg" },
+  { name: "Shopify", icon: "/img/shopify.svg" },
+  { name: "Next.js", icon: "/img/nextjs.svg" },
+  { name: "Tailwind", icon: "/img/tailwind.svg" },
+  { name: "Sass", icon: "/img/sass.svg" },
   { name: "Figma", icon: "/img/figma.svg" },
   { name: "WebFlow", icon: "/img/webflow.svg" },
   { name: "PhotoShop", icon: "/img/psd.svg" },
-  { name: "WordPress", icon: "/img/wordpress.svg" },
-  { name: "React", icon: "/img/react.svg" },
-  { name: "Next.js", icon: "/img/nextjs.svg" },
-  { name: "Tailwind", icon: "/img/tailwind.svg" },
 ];
 
 export default function ToolSlider() {
-  const looped = [...tools, ...tools]; // duplicate
+  const looped = [...tools, ...tools]; 
 
   return (
     <div className="w-full overflow-hidden py-6">
@@ -22,7 +23,7 @@ export default function ToolSlider() {
         {looped.map((tool, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center min-w-[80px] flex-shrink-0"
+            className="flex flex-col items-center justify-center min-w-[100px] flex-shrink-0"
           >
             <img
               src={tool.icon}
