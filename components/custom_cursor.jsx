@@ -1,9 +1,22 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
 
 export default function CustomCursor() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      setIsMobile(hasTouch);
+    };
+
+    checkDevice();
+  }, []);
+
+  if (isMobile) return null;
+
   return (
     <AnimatedCursor
       innerSize={8}
