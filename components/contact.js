@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import emailjs from "emailjs-com";
-import Image from "next/image";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -36,85 +35,30 @@ export default function Contact() {
   };
 
   return (
-    <div className="inner">
-      <div className="contact-blk">
-        <div className="contact-info">
-          <h3>Contact Information</h3>
-
-          <ul className="info-list">
-            <li>
-              <a href="tel:+959255561989">
-                <svg className="icon" width="30" height="30" aria-hidden="true">
-                  <use href="/icons.svg#icon-phone" />
-                </svg>
-                <span>Phone</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="mailto:thinzarhsu12@gmail.com">
-                <svg className="icon" width="30" height="30" aria-hidden="true">
-                  <use href="/icons.svg#icon-mail" />
-                </svg>
-                <span>Gmail</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="https://github.com/hsuthinzar12" target="_blank">
-                <svg className="icon" width="30" height="30" aria-hidden="true">
-                  <use href="/icons.svg#icon-github" />
-                </svg>
-                <span>Github</span>
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="https://www.linkedin.com/in/hsu-thinzar-72a9b023b/"
-                target="_blank"
-              >
-                <svg className="icon" width="30" height="30" aria-hidden="true">
-                  <use href="/icons.svg#icon-linkedin" />
-                </svg>
-                <span>Linkedin</span>
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="/HsuThinzar_CV.pdf"
-                target="_blank"
-              >
-                <span>Click here to download CV</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-
+    <section className="sec-contact scroll-mt-30" id="contact">
+      <div className="inner">
+        <h2 className="cmn-ttl">
+          <span>Contact</span>
+        </h2>
         <div className="contact-form">
-          <h3>Just say Hello !</h3>
-
           <form onSubmit={sendEmail}>
-            <div className="flex-box">
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-              />
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+            />
 
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+            />
 
             <textarea
               name="message"
@@ -128,6 +72,6 @@ export default function Contact() {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
