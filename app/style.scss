@@ -25,11 +25,15 @@ button { color: inherit; }
 img { max-width: 100%; }
 :focus-visible { outline: 2px solid var(--violet-light); outline-offset: 4px; }
 
+::-webkit-scrollbar-track {background: transparent;}
+::-webkit-scrollbar {width: 4px; height: 3px;}
+::-webkit-scrollbar-thumb {background: rgba(164,119,255,.42);}
+
 .site-header { position: fixed; inset: 0 0 auto; z-index: 20; height: 76px; background: rgba(8,7,11,.74); border-bottom: 1px solid rgba(255,255,255,.045); backdrop-filter: blur(18px); }
 .header-inner { width: min(1120px, calc(100% - 48px)); height: 100%; margin: auto; display: flex; align-items: center; justify-content: space-between; }
 .logo,.footer-brand { font-size: 24px; font-weight: 800; letter-spacing: -.09em; }
 .logo span,.footer-brand span { color: var(--violet); }
-.site-nav { display: flex; align-items: center; gap: 30px; color: #c5becf; font-size: 13px; }
+.site-nav { display: flex; align-items: center; gap: 30px; color: #c5becf; font-size: 16px; }
 .site-nav > a { transition: color .2s ease; }
 .site-nav > a:hover { color: white; }
 .site-nav .nav-cta { padding: 9px 15px; color: #fff; border: 1px solid rgba(164,119,255,.52); border-radius: 999px; background: rgba(126,80,222,.14); }

@@ -69,6 +69,19 @@ img {
   outline-offset: 4px;
 }
 
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(164, 119, 255, 0.42);
+}
+
 .site-header {
   position: fixed;
   inset: 0 0 auto;
@@ -103,7 +116,7 @@ img {
   align-items: center;
   gap: 30px;
   color: #c5becf;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .site-nav > a {
@@ -1343,8 +1356,7 @@ img {
   .project-carousel > .project-card {
     flex-basis: 100%;
   }
-}/*# sourceMappingURL=style.css.map */
-
+}
 /* Three separate mobile pills, with count badges above each button. */
 @media (max-width: 620px) {
   #projects .project-tabs {
@@ -1358,7 +1370,6 @@ img {
     border: 0;
     background: transparent;
   }
-
   #projects .project-tabs button {
     position: relative;
     min-width: 0;
@@ -1368,15 +1379,14 @@ img {
     overflow: visible;
     border: 1px solid transparent;
     border-radius: 999px;
-    background: rgba(255, 255, 255, .04);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--text);
     font-size: clamp(10px, 2.8vw, 12px);
     font-weight: 500;
     line-height: 1.5;
     white-space: nowrap;
-    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
-
   #projects .project-tabs button span {
     position: absolute;
     top: -12px;
@@ -1396,17 +1406,16 @@ img {
     line-height: 1;
     pointer-events: none;
   }
-
   #projects .project-tabs button.active {
-    border-color: rgba(183, 146, 255, .4);
-    background: rgba(137, 93, 213, .18);
+    border-color: rgba(183, 146, 255, 0.4);
+    background: rgba(137, 93, 213, 0.18);
     color: #e8dcff;
   }
-
   #projects .project-tabs button.active span {
     background: #493465;
     color: #e8dcff;
   }
-
-  #projects .project-tabs button:focus-visible { outline-offset: 3px; }
-}
+  #projects .project-tabs button:focus-visible {
+    outline-offset: 3px;
+  }
+}/*# sourceMappingURL=style.css.map */

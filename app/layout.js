@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import Header from "@/components/header";
 import PageTop from "@/components/page_top";
+import CustomCursor from "@/components/custom_cursor";
 import "./globals.css";
 
 const manrope = localFont({
@@ -19,5 +20,5 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <html lang="en"><body className={manrope.variable}><Header />{children}<PageTop /></body></html>;
+  return <html lang="en"><body className={manrope.variable}><CustomCursor /><Header />{children}<PageTop /></body></html>;
 }

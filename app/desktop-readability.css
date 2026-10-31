@@ -1,0 +1,55 @@
+/* Desktop-only additions; original styles and mobile layouts stay intact. */
+@media (min-width: 1024px) {
+  body { font-size: 14px; }
+
+  .site-header { padding-inline: 24px; }
+  .header-inner { width: 100%; max-width: 1240px; }
+  .section-shell { width: 100%; max-width: 1240px; }
+  .site-footer { width: calc(100% - 48px); max-width: 1240px; }
+
+  /* Reading text and form fields. */
+  .about-copy p,
+  .about-copy p:first-of-type,
+  .focus-item p,
+  .skill-card > p,
+  .journey-intro p,
+  .timeline-role,
+  .timeline-note,
+  .projects-heading p,
+  .project-body p,
+  .contact-intro > p,
+  .contact-card input,
+  .contact-card textarea {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  /* Keep card titles above their larger body copy. */
+  .focus-item h3,
+  .skill-card h3,
+  .column-title,
+  .timeline-card h4,
+  .project-body h3 { font-size: 18px; line-height: 1.45; }
+
+  .button,
+  .text-link,
+  .direct-email,
+  .project-link,
+  .project-tabs button { font-size: 16px; }
+
+  .availability,
+  .hero-location,
+  .skill-pill,
+  .timeline-date,
+  .project-tags span,
+  .project-note,
+  .contact-card label,
+  .form-status,
+  .project-carousel-controls span,
+  .site-footer { font-size: 14px; }
+
+  .card-index,
+  .section-kicker,
+  .project-eyebrow,
+  .project-tabs button span { font-size: 12px; }
+}
