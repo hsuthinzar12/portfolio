@@ -1,36 +1,14 @@
 "use client";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
-const skills = [
-  { name: "HTML", icon: "/img/svg/html.svg" },
-  { name: "CSS", icon: "/img/svg/css.svg" },
-  { name: "JavaScript", icon: "/img/svg/js.svg" },
-  { name: "WordPress", icon: "/img/svg/wordpress.svg" },
-  { name: "Shopify", icon: "/img/svg/shopify.svg" },
-  { name: "Next.js", icon: "/img/svg/nextjs.svg" },
-  { name: "Tailwind", icon: "/img/svg/tailwind.svg" },
-  { name: "Sass", icon: "/img/svg/sass.svg" },
-  { name: "Figma", icon: "/img/svg/figma.svg" },
-  { name: "WebFlow", icon: "/img/svg/webflow.svg" },
-  { name: "PhotoShop", icon: "/img/svg/psd.svg" },
+const groups = [
+  { title: "Product design", note: "From first sketch to clickable flow", skills: ["Figma", "Photoshop"] },
+  { title: "Frontend", note: "Accessible, responsive interfaces", skills: ["HTML", "CSS", "JavaScript", "Next.js", "Tailwind", "Sass"] },
+  { title: "Platforms & tools", note: "Building and maintaining for the web", skills: ["WordPress", "Shopify", "Webflow"] },
 ];
+const icons = { HTML: "html", CSS: "css", JavaScript: "js", WordPress: "wordpress", Shopify: "shopify", "Next.js": "nextjs", Tailwind: "tailwind", Sass: "sass", Figma: "figma", Webflow: "webflow", Photoshop: "psd" };
 
 export default function SkillsSlider() {
-  const looped = [...skills, ...skills]; 
-
-  return (
-    <div className="skill-blk">
-      <ul className="skill-list animate-slide">
-        {looped.map((skill, index) => (
-          <li key={index} >
-            <div className="skill-img">
-              <img
-              src={skill.icon}
-              alt={skill.name}
-              />
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <div className="skill-groups">{groups.map((group, i) => <motion.article className="glass-card skill-card" key={group.title} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.5, delay: i * 0.1 }}><span className="card-index">0{i + 1} / TOOLKIT</span><h3>{group.title}</h3><p>{group.note}</p><div className="skill-list">{group.skills.map((skill) => <span className="skill-pill" key={skill}><Image src={`/img/svg/${icons[skill]}.svg`} alt="" width={17} height={17} />{skill}</span>)}</div></motion.article>)}</div>;
 }

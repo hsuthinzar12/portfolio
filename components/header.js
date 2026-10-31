@@ -1,69 +1,46 @@
 "use client";
-import { useState, useEffect } from "react";
-import { ModeToggle } from "./mode";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+
+const links = [["About", "#about"], ["Skills", "#skills"], ["Journey", "#experience"], ["Projects", "#projects"]];
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
+  const headerRef = useRef(null);
+  const toggleRef = useRef(null);
   useEffect(() => {
-        if (isOpen) {
-            document.body.classList.add("nav-open");
-        } else {
-            document.body.classList.remove("nav-open");
-        }
+    document.body.classList.toggle("nav-open", isOpen);
+    if (!isOpen) return () => document.body.classList.remove("nav-open");
+    const handleKey = (event) => {
+      if (event.key === "Escape") { setIsOpen(false); toggleRef.current?.focus(); }
+      if (event.key === "Tab") {
+        const items = [...headerRef.current.querySelectorAll("a, button")].filter(item => item.getClientRects().length);
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    };
+    const desktop = window.matchMedia("(min-width: 621px)");
+    const closeOnDesktop = () => { if (desktop.matches) setIsOpen(false); };
+    document.addEventListener("keydown", handleKey);
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => {
+      document.body.classList.remove("nav-open");
+      document.removeEventListener("keydown", handleKey);
+      desktop.removeEventListener("change", closeOnDesktop);
+    };
+  }, [isOpen]);
 
-        return () => {
-            document.body.classList.remove("nav-open");
-        };
-    }, [isOpen]);
-  return (
-    <header>
-      <div className="h-inr">
-        <div className="logo">
-          <a href="/">Hsu</a>
-        </div>
-        <div className="sp-menu sp">
-        <button
-          className={`menu-trigger ${isOpen ? "is-active" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle navigation"
-          aria-expanded={isOpen}
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div className="mode-toggle">
-          <ModeToggle />
-        </div>
-        </div>
-        <nav className={`gnav ${isOpen ? "is-open" : ""}`}>
-          <ul className="gnav-list">
-            <li>
-              <a href="#about" onClick={closeMenu}>About</a>
-            </li>
-            <li>
-              <a href="#skills" onClick={closeMenu}>Skills</a>
-            </li>
-            <li>
-              <a href="#projects" onClick={closeMenu}>Projects</a>
-            </li>
-            <li>
-              <a href="#contact" onClick={closeMenu}>Contact</a>
-            </li>
-          </ul>
-          <div className="mode-toggle pc">
-            <ModeToggle />
-          </div>
-        </nav>
-      </div>
-    </header>
-  );
+  return <header ref={headerRef} className={`site-header ${isOpen ? "mobile-menu-open" : ""}`}>
+    <div className="header-inner">
+      <a className="logo" href="#home" aria-label="Hsu Thinzar, home" onClick={() => setIsOpen(false)}><span className="logo" style={{ color: "inherit" }}>Hsu<span>.</span></span></a>
+      <button ref={toggleRef} className="menu-toggle" type="button" onClick={() => setIsOpen(!isOpen)} aria-label={isOpen ? "Close navigation" : "Open navigation"} aria-expanded={isOpen} aria-controls="main-navigation">
+        {isOpen ? <X size={22} /> : <Menu size={22} />}
+      </button>
+      <nav id="main-navigation" className={`site-nav ${isOpen ? "is-open" : ""}`} aria-label="Main navigation">
+        {links.map(([label, href]) => <a className={href === "#experience" ? "nav-journey" : undefined} key={href} href={href} onClick={() => setIsOpen(false)}>{label}</a>)}
+        <a className="nav-cta" href="#contact" onClick={() => setIsOpen(false)}>Let&apos;s connect <span>↗</span></a>
+      </nav>
+    </div>
+  </header>;
 }

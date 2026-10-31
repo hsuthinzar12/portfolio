@@ -1,0 +1,65 @@
+/* Three separate mobile pills, with count badges above each button. */
+@media (max-width: 620px) {
+  #projects .project-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin: 0 0 28px;
+    padding: 12px 0 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  #projects .project-tabs button {
+    position: relative;
+    min-width: 0;
+    min-height: 46px;
+    justify-content: center;
+    padding: 10px 4px;
+    overflow: visible;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .04);
+    color: var(--text);
+    font-size: clamp(10px, 2.8vw, 12px);
+    font-weight: 500;
+    line-height: 1.5;
+    white-space: nowrap;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+  }
+
+  #projects .project-tabs button span {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    min-width: 26px;
+    height: 22px;
+    padding: 2px 6px;
+    border: 1px solid var(--page);
+    border-radius: 999px;
+    background: #29242f;
+    color: #c5becf;
+    font-size: 9px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  #projects .project-tabs button.active {
+    border-color: rgba(183, 146, 255, .4);
+    background: rgba(137, 93, 213, .18);
+    color: #e8dcff;
+  }
+
+  #projects .project-tabs button.active span {
+    background: #493465;
+    color: #e8dcff;
+  }
+
+  #projects .project-tabs button:focus-visible { outline-offset: 3px; }
+}

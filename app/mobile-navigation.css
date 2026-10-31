@@ -1,0 +1,23 @@
+/* Mobile-only additions. Original style.scss is preserved unchanged. */
+@media (max-width: 620px) {
+  /* Keep the viewport-fixed menu outside a backdrop-filter containing block. */
+  .site-header { backdrop-filter: none; }
+  .site-header.mobile-menu-open { background: #000; border-bottom-color: transparent; }
+  .header-inner > .logo { position: relative; z-index: 22; }
+  .mobile-logo { display: none; }
+  .mobile-menu-open .desktop-logo { display: none; }
+  .mobile-menu-open .mobile-logo { display: inline; color: #fff; font-size: 30px; font-weight: 500; letter-spacing: -.04em; }
+  .menu-toggle { border: 0; background: transparent; border-radius: 0; cursor: pointer; }
+  .menu-toggle svg { width: 32px; height: 32px; stroke-width: 1.7; }
+  .site-nav {
+    inset: 0; width: 100%; height: 100vh; height: 100dvh;
+    background: #000; backdrop-filter: none; color: #fff;
+    align-items: center; justify-content: center; gap: 12px;
+    padding: max(76px, env(safe-area-inset-top)) 24px max(76px, env(safe-area-inset-bottom));
+    overflow-y: auto; transform: none;
+  }
+  .site-nav > a { flex: none; padding: 8px 16px; font-size: 20px; line-height: 1.6; text-align: center; }
+}
+@media (min-width: 621px) {
+  .mobile-logo { display: none; }
+}
