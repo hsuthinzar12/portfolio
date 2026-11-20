@@ -21,13 +21,16 @@
     overflow: visible;
     border: 1px solid transparent;
     border-radius: 999px;
-    background: rgba(255, 255, 255, .04);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--text);
     font-size: clamp(10px, 2.8vw, 12px);
     font-weight: 500;
     line-height: 1.5;
     white-space: nowrap;
-    transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
   }
 
   #projects .project-tabs button span {
@@ -51,8 +54,8 @@
   }
 
   #projects .project-tabs button.active {
-    border-color: rgba(183, 146, 255, .4);
-    background: rgba(137, 93, 213, .18);
+    border-color: rgba(183, 146, 255, 0.4);
+    background: rgba(137, 93, 213, 0.18);
     color: #e8dcff;
   }
 
@@ -61,5 +64,7 @@
     color: #e8dcff;
   }
 
-  #projects .project-tabs button:focus-visible { outline-offset: 3px; }
+  #projects .project-tabs button:focus-visible {
+    outline-offset: 3px;
+  }
 }

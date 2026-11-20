@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight, BriefcaseBusiness, Code2, Figma, Layers3, MapP
 import Contact from "@/components/contact";
 import ProjectsSection from "@/components/project_tabs";
 import SkillsSlider from "@/components/skills_slider";
+import AwardsSection from "@/components/awards";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -59,7 +60,7 @@ export default function Home() {
             <motion.article className="glass-card about-copy" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
               <span className="card-index">01 / ABOUT</span>
               <p>I’m a UI/UX designer with a background in frontend development and CMS platforms. Currently working as a UI/UX Intern, I’m continuing to grow my design skills and explore ways to turn complex workflows into simple, intuitive experiences.</p>
-              <p>At MetaTeam Myanmar, I gained hands-on experience in frontend development and CMS maintenance, supporting more than 300 dental websites, improving WordPress layouts, and investigating Shopify plugin issues. I also participated in UXMM’s Into the AI Ocean Buildathon as a UI Designer.</p>
+              <p>At MetaTeam Myanmar, I gained hands-on experience in frontend development and CMS maintenance, supporting more than 300 dental websites, improving WordPress layouts, and investigating Shopify plugin issues. At UXMM’s Into the AI Ocean Buildathon, I contributed to StockSense with Team Ocean Blue, which won the Best Idea Award and the Funded Award ($1,000 investment).</p>
               <a className="text-link" href="/HsuThinzar_CV.pdf" target="_blank" rel="noreferrer">View my résumé <ArrowUpRight size={16} /></a>
             </motion.article>
             <motion.article className="glass-card focus-card" initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeUp}>
@@ -99,6 +100,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <AwardsSection />
 
       <section className="section projects-section" id="projects">
         <div className="section-shell">

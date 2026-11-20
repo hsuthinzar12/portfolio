@@ -1,14 +1,38 @@
 "use client";
 import Image from "next/image";
-import { ArrowUpRight, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, ChevronLeft, ChevronRight, Trophy } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import operightHero from "@/public/img/operight-hero.jpg";
+import oceanBlueHero from "@/public/img/oceanblue-hero.jpg";
 
 const projectsData = [
+  {
+    id: 13,
+    category: "coding",
+    title: "Operight Landing Page",
+    eyebrow: "Product website",
+    tags: ["Frontend", "Landing page"],
+    hero: operightHero,
+    link: "https://operight-landing-page.vercel.app/",
+    linkLabel: "View Live Site",
+    description: "A product landing page that introduces Operight and explains how small businesses can use it to manage inventory."
+  },
+  {
+    id: 14,
+    category: "coding",
+    title: "Ocean Blue Team Portfolio",
+    eyebrow: "Team website",
+    tags: ["Frontend", "Portfolio"],
+    hero: oceanBlueHero,
+    link: "https://oceanblueportfolio.vercel.app/",
+    linkLabel: "View Live Site",
+    description: "A team portfolio that introduces Ocean Blue and showcases the team behind the StockSense buildathon project."
+  },
   { id: 1, category: "coding", title: "Corporate Website Renewal", eyebrow: "Web development", tags: ["WordPress", "CSS", "jQuery"], visual: "visual-purple", mark: "01", description: "Audited a corporate website, removed redundant plugins, and implemented custom functionality. Fixed layout bugs and refined pages to match updated designs." },
   { id: 2, category: "coding", title: "Dental Website Network", eyebrow: "Multi-site maintenance", tags: ["HTML", "CSS", "WordPress"], visual: "visual-blue", mark: "300+", description: "Maintained more than 300 dental websites, keeping daily experiences stable while resolving layout issues and supporting long-term improvements." },
   { id: 3, category: "coding", title: "Shopify Plugin Investigation", eyebrow: "Technical research", tags: ["Shopify", "Liquid", "Local setup"], visual: "visual-pink", mark: "03", description: "Set up local Shopify testing environments to investigate plugin conflicts and app constraints, then shared findings to support client decisions." },
   { id: 4, category: "uiux", title: "Ferry App", eyebrow: "UI/UX Case Study · Transportation", tags: ["Figma", "UX research"], img: "/img/img_ferry_app.png", link: "https://www.figma.com/design/I5XDQ3l5G8Rc7nz3Bqte64/Ferry-App?node-id=2391-531&t=qSYFX7SoifbgSWiZ-1", description: "Explored ways to make daily commutes smoother by addressing pain points shared by both employees and drivers." },
-  { id: 10, category: "uiux", title: "StockSense", eyebrow: "Buildathon Project", tags: ["Product design", "Inventory", "Food warehouse"], visual: "visual-ocean", mark: "SS", link: "https://oceanblue-ten.vercel.app/dashboard", linkLabel: "Live Demo", description: "AI-powered inventory management system for food warehouses, with plans to expand to convenience stores. Contributed to frontend development and UI improvements." },
+  { id: 10, category: "uiux", title: "StockSense", eyebrow: "UXMM · Into the AI Ocean Buildathon", rebrand: "Now known as Operight", awards: ["Best Idea Award", "$1,000 Investment"], tags: ["Product design", "Inventory", "Food warehouse"], visual: "visual-ocean", mark: "SS", link: "https://oceanblue-ten.vercel.app/dashboard", linkLabel: "Live Demo", description: "AI-powered inventory management system for food warehouses, with plans to expand to convenience stores. Contributed to frontend development, performance fixes, and UI improvements with Team Ocean Blue." },
   { id: 11, category: "uiux", title: "Skillence", eyebrow: "UI/UX · Job Portal App", tags: ["UI/UX design", "Job portal"], visual: "visual-purple", mark: "SK", confidential: true, description: "UI/UX design for a job portal application. Project details and design files are confidential." },
   { id: 12, category: "uiux", title: "Pawverse", eyebrow: "UI/UX Group Project · Pet Community App", tags: ["Figma", "Mobile app", "Community"], visual: "visual-pink", mark: "PV", link: "https://www.figma.com/design/JZAqh2xQR7csYRaUZ5cHpo/PawVerse-Product-UI?node-id=1-3&t=xBLVH1nOe4Atc6er-1", description: "Collaborated on a pet community app with pet posts, chat, missing-pet updates, and health articles." },
   { id: 6, category: "uiux", title: "BurmaBeat", eyebrow: "UI/UX Group Project · Music App", tags: ["Figma", "UX research"], visual: "visual-pink", mark: "♪", link: "https://www.figma.com/design/JtdBg0wl3ELJQ7SVSy7ay2/BurmaBeat?node-id=2-2&t=dWxvZA83ERvpFnpe-1", description: "Designed an interactive nine-screen music experience covering Beatjam, Find Song, and Music Play, guided by user personas." },
@@ -55,8 +79,16 @@ export default function ProjectsSection() {
       if (event.key === "ArrowRight" || event.key === "ArrowLeft") { event.preventDefault(); slide(event.key === "ArrowRight" ? 1 : -1); }
     }}>
       {visibleProjects.map((project) => <article className="project-card" key={project.id}>
-        {project.img ? <div className="project-visual"><Image src={project.img} alt={`${project.title} preview`} width={700} height={450} /></div> : <div className={`project-visual project-visual-generated ${project.visual}`}><span>{project.mark}</span><i /><i /><i /></div>}
-        <div className="project-body"><span className="project-eyebrow">{project.eyebrow}</span><h3>{project.title}</h3><p>{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        {project.hero ? (
+          <div className="project-visual project-visual-hero">
+            <Image src={project.hero} alt={`${project.title} homepage hero`} sizes="(max-width: 640px) 85vw, 500px" />
+          </div>
+        ) : project.img ? (
+          <div className="project-visual"><Image src={project.img} alt={`${project.title} preview`} width={700} height={450} /></div>
+        ) : (
+          <div className={`project-visual project-visual-generated ${project.visual}`}><span>{project.mark}</span><i /><i /><i /></div>
+        )}
+        <div className="project-body"><span className="project-eyebrow">{project.eyebrow}</span><h3>{project.title}</h3>{project.rebrand && <p className="project-rebrand">{project.rebrand}</p>}{project.awards && <div className="project-award-badges" aria-label="Team awards">{project.awards.map((award) => <span key={award}><Trophy size={13} aria-hidden="true" />{award}</span>)}</div>}<p>{project.description}</p><div className="project-tags">{project.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           {project.confidential ? <span className="project-link">Confidential</span> : project.link && <a className="project-link" href={project.link} target="_blank" rel="noopener noreferrer">{project.linkLabel || "View Details"} <ExternalLink size={15} /></a>}
         </div>
       </article>)}
