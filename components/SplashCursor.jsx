@@ -319,6 +319,7 @@ function startCanvasFallback(canvas, settingsRef) {
   const inside = point => point.x >= 0 && point.y >= 0 && point.x <= canvas.clientWidth && point.y <= canvas.clientHeight;
   const reset = () => { lastPoint = undefined; };
   const onMove = event => {
+    if (event.pointerType === 'touch') return;
     const point = pointAt(event);
     if (!inside(point)) {
       reset();
@@ -335,6 +336,7 @@ function startCanvasFallback(canvas, settingsRef) {
     }
   };
   const onDown = event => {
+    if (event.pointerType === 'touch') return;
     const point = pointAt(event);
     if (!inside(point) || !settingsRef.current.clickSplash) return;
     lastPoint = point;
@@ -353,6 +355,51 @@ function startCanvasFallback(canvas, settingsRef) {
     cancelAnimationFrame(frame);
     for (const [type, listener] of Object.entries(listeners)) window.removeEventListener(type, listener);
     document.documentElement.removeEventListener('pointerleave', reset);
+  };
+}
+
+function startTouchPulse(root, pulse, settingsRef) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let tap;
+  let animation;
+
+  const onDown = event => {
+    if (event.pointerType !== 'touch' || !event.isPrimary) return;
+    tap = { id: event.pointerId, x: event.clientX, y: event.clientY };
+  };
+  const onMove = event => {
+    if (tap?.id === event.pointerId && Math.hypot(event.clientX - tap.x, event.clientY - tap.y) > 10) {
+      tap = undefined;
+    }
+  };
+  const onCancel = event => {
+    if (tap?.id === event.pointerId) tap = undefined;
+  };
+  const onUp = event => {
+    onMove(event);
+    if (tap?.id !== event.pointerId) return;
+    tap = undefined;
+    if (!settingsRef.current.clickSplash || reducedMotion.matches) return;
+
+    const bounds = root.getBoundingClientRect();
+    const x = event.clientX - bounds.left;
+    const y = event.clientY - bounds.top;
+    if (x < 0 || y < 0 || x > bounds.width || y > bounds.height) return;
+
+    animation?.cancel();
+    pulse.style.left = `${x}px`;
+    pulse.style.top = `${y}px`;
+    animation = pulse.animate([
+      { transform: 'translate(-50%, -50%) scale(.72)', opacity: .74 },
+      { transform: 'translate(-50%, -50%) scale(1.15)', opacity: 0 }
+    ], { duration: 320, easing: 'ease-out' });
+  };
+
+  const listeners = { pointerdown: onDown, pointermove: onMove, pointerup: onUp, pointercancel: onCancel };
+  for (const [type, listener] of Object.entries(listeners)) window.addEventListener(type, listener, { passive: true });
+  return () => {
+    animation?.cancel();
+    for (const [type, listener] of Object.entries(listeners)) window.removeEventListener(type, listener);
   };
 }
 
@@ -379,6 +426,7 @@ function SplashCursor({
 }) {
   const rootRef = useRef(null);
   const canvasRef = useRef(null);
+  const pulseRef = useRef(null);
   const releaseRef = useRef(0);
   const [generation, setGeneration] = useState(0);
   const [useFallback, setUseFallback] = useState(false);
@@ -403,6 +451,8 @@ function SplashCursor({
   const settingsRef = useRef(settings);
   settingsRef.current = settings;
   const introRef = useRef(intro);
+
+  useEffect(() => startTouchPulse(rootRef.current, pulseRef.current, settingsRef), []);
 
   useEffect(() => {
     const parent = rootRef.current?.parentElement;
@@ -917,8 +967,9 @@ function SplashCursor({
     const pointers = new Map();
     const bursts = [];
     const reduced = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+    const touchPrimary = window.matchMedia('(pointer: coarse)').matches;
     const introPointer = { x: 0, y: 0, px: 0, py: 0, ready: false, moved: false, offset: Math.random() };
-    let introStart = introRef.current && !reduced ? performance.now() + 150 : -1;
+    let introStart = introRef.current && !reduced && !touchPrimary ? performance.now() + 150 : -1;
     let raf = 0;
     let last = 0;
     let lastActivity = performance.now();
@@ -1047,19 +1098,6 @@ function SplashCursor({
     const onPointerDown = event => {
       if (event.pointerType !== 'touch') press(event.clientX, event.clientY);
     };
-    const onTouchStart = event => {
-      Array.from(event.changedTouches).forEach(touch => {
-        pointers.delete(`t${touch.identifier}`);
-        track(`t${touch.identifier}`, touch.clientX, touch.clientY);
-        press(touch.clientX, touch.clientY);
-      });
-    };
-    const onTouchMove = event => {
-      Array.from(event.changedTouches).forEach(touch => track(`t${touch.identifier}`, touch.clientX, touch.clientY));
-    };
-    const onTouchEnd = event => {
-      Array.from(event.changedTouches).forEach(touch => pointers.delete(`t${touch.identifier}`));
-    };
     const onLeave = () => {
       pointers.forEach(pointer => {
         pointer.ready = false;
@@ -1075,10 +1113,6 @@ function SplashCursor({
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('pointerdown', onPointerDown, { passive: true });
-    window.addEventListener('touchstart', onTouchStart, { passive: true });
-    window.addEventListener('touchmove', onTouchMove, { passive: true });
-    window.addEventListener('touchend', onTouchEnd, { passive: true });
-    window.addEventListener('touchcancel', onTouchEnd, { passive: true });
     document.documentElement.addEventListener('pointerleave', onLeave);
     canvas.addEventListener('webglcontextlost', onLost);
     canvas.addEventListener('webglcontextrestored', onRestored);
@@ -1089,10 +1123,6 @@ function SplashCursor({
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onPointerMove);
       window.removeEventListener('pointerdown', onPointerDown);
-      window.removeEventListener('touchstart', onTouchStart);
-      window.removeEventListener('touchmove', onTouchMove);
-      window.removeEventListener('touchend', onTouchEnd);
-      window.removeEventListener('touchcancel', onTouchEnd);
       document.documentElement.removeEventListener('pointerleave', onLeave);
       canvas.removeEventListener('webglcontextlost', onLost);
       canvas.removeEventListener('webglcontextrestored', onRestored);
@@ -1119,6 +1149,7 @@ function SplashCursor({
       aria-hidden="true"
     >
       <canvas key={useFallback ? '2d' : 'webgl'} ref={canvasRef} className={CANVAS} />
+      <span ref={pulseRef} className="splash-cursor__touch-pulse" />
     </div>
   );
 }
